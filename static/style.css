@@ -1,0 +1,108 @@
+:root {
+    --primary: #000000;
+    --secondary: #1a2764;
+    --bg-light: #ffffff;
+    --bg-dark: #3c3c57;
+    --text-light: #020202;
+    --text-dark: #f0f0f0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--secondary);
+    color: var(--text-light);
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .dark-mode {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: var(--bg-light);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .dark-mode .container {
+    background-color: #353232;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h1::before {
+    content: "📚";
+  }
+
+  p {
+    text-align: center;
+    color: #14850a;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+  }
+
+  th, td {
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  th {
+    background-color: var(--primary);
+    color: white;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:hover {
+    background-color: #efefef;
+  }
+
+  .dark-mode tr:nth-child(even) {
+    background-color: #33384e;
+  }
+
+  .dark-mode tr:hover {
+    background-color: #3c4160;
+  }
+
+  .toggle-button {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+  }
+
+  .toggle-button:hover {
+    background: #1d7004;
+  }
+
+  canvas {
+    margin-top: 40px;
+  }

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Mahasiswa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+:root {
+    --primary: #000000;
+    --secondary: #1a2764;
+    --bg-light: #ffffff;
+    --bg-dark: #3c3c57;
+    --text-light: #020202;
+    --text-dark: #f0f0f0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--secondary);
+    color: var(--text-light);
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .dark-mode {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: var(--bg-light);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .dark-mode .container {
+    background-color: #353232;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h1::before {
+    content: "📚";
+  }
+
+  p {
+    text-align: center;
+    color: #14850a;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+  }
+
+  th, td {
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  th {
+    background-color: var(--primary);
+    color: white;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:hover {
+    background-color: #efefef;
+  }
+
+  .dark-mode tr:nth-child(even) {
+    background-color: #33384e;
+  }
+
+  .dark-mode tr:hover {
+    background-color: #3c4160;
+  }
+
+  .toggle-button {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+  }
+
+  .toggle-button:hover {
+    background: #1d7004;
+  }
+
+  canvas {
+    margin-top: 40px;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="toggle-button" onclick="toggleDarkMode()">🌗 Data Mode Gelap/Terang</button>
+    <h1>Data Nilai Mahasiswa</h1>
+    <p>Berikut adalah data nilai mahasiswa yang telah diolah dengan Pandas:</p>
+
+    <!-- Tabel dari Pandas -->
+    <div>
+      {{ table | safe }}
+    </div>
+
+    <!-- Grafik -->
+    <canvas id="nilaiChart" height="100"></canvas>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    // Contoh data dummy - ganti dengan data dari backend (misalnya melalui Jinja di Flask/Django)
+    const labels = ['Ali', 'Muhammad', 'Fatah', 'Zan', 'Fauzan'];
+    const data = [85, 92, 78, 90, 88];
+
+    const ctx = document.getElementById('nilaiChart').getContext('2d');
+    const nilaiChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Nilai Mahasiswa',
+          data: data,
+          backgroundColor: '#FFD700',
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: '#000000'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
